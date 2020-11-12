@@ -1,0 +1,175 @@
+<?com.pos.transprocessor.xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="root" type="rootType"/>
+    <xs:complexType name="discount_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:byte" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="additive_tax_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:byte" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="inclusive_tax_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:short" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="refunded_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:byte" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="tax_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:short" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="tip_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:byte" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="total_collected_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:short" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="creatorType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="id"/>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="email"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="total_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:short" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="tenderType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="type"/>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="total_moneyType" name="total_money"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="applied_moneyType">
+        <xs:sequence>
+            <xs:element name="amount">
+                <xs:simpleType>
+                    <xs:restriction base="xs:short">
+                        <xs:enumeration value="483"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="taxesType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="id"/>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:float" name="rate"/>
+            <xs:element type="xs:string" name="inclusion_type"/>
+            <xs:element type="xs:string" name="is_custom_amount"/>
+            <xs:element type="applied_moneyType" name="applied_money"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="single_quantity_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:short" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="gross_sales_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:short" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="net_sales_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:short" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="categoryType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="id"/>
+            <xs:element type="xs:string" name="name"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="price_moneyType">
+        <xs:sequence>
+            <xs:element type="xs:short" name="amount"/>
+            <xs:element type="xs:string" name="currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="variationType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="id"/>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="pricing_type"/>
+            <xs:element type="price_moneyType" name="price_money"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="modifiersType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="id"/>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:byte" name="quantity"/>
+            <xs:element type="applied_moneyType" name="applied_money"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="itemizationType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="id"/>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:byte" name="quantity"/>
+            <xs:element type="total_moneyType" name="total_money"/>
+            <xs:element type="single_quantity_moneyType" name="single_quantity_money"/>
+            <xs:element type="gross_sales_moneyType" name="gross_sales_money"/>
+            <xs:element type="discount_moneyType" name="discount_money"/>
+            <xs:element type="net_sales_moneyType" name="net_sales_money"/>
+            <xs:element type="categoryType" name="category"/>
+            <xs:element type="variationType" name="variation"/>
+            <xs:element type="taxesType" name="taxes" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="modifiersType" name="modifiers"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="rootType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="_id"/>
+            <xs:element type="xs:string" name="business_id"/>
+            <xs:element type="xs:string" name="location_id"/>
+            <xs:element type="xs:string" name="transaction_id"/>
+            <xs:element type="xs:string" name="receipt_id"/>
+            <xs:element type="xs:string" name="serial_number"/>
+            <xs:element type="xs:string" name="dining_option"/>
+            <xs:element type="xs:dateTime" name="creation_time"/>
+            <xs:element type="discount_moneyType" name="discount_money"/>
+            <xs:element type="additive_tax_moneyType" name="additive_tax_money"/>
+            <xs:element type="inclusive_tax_moneyType" name="inclusive_tax_money"/>
+            <xs:element type="refunded_moneyType" name="refunded_money"/>
+            <xs:element type="tax_moneyType" name="tax_money"/>
+            <xs:element type="tip_moneyType" name="tip_money"/>
+            <xs:element type="total_collected_moneyType" name="total_collected_money"/>
+            <xs:element type="creatorType" name="creator"/>
+            <xs:element type="tenderType" name="tender"/>
+            <xs:element type="taxesType" name="taxes" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="itemizationType" name="itemization"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

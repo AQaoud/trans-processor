@@ -1,0 +1,60 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id 'maven'
+    id 'java-library'
+}
+
+
+group = 'com.pos'
+version = '0.0.1-RELEASE'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/aqaoud/trans-core")
+    }
+}
+
+
+dependencies {
+    implementation('com.pos:trans-core:1.0.0-RELEASE')
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    implementation('org.springframework.boot:spring-boot-starter-validation')
+    implementation group: 'org.eclipse.persistence', name: 'org.eclipse.persistence.moxy', version: '2.7.7'
+    // https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink
+    implementation group: 'org.eclipse.persistence', name: 'eclipselink', version: '2.7.7'
+    // https://mvnrepository.com/artifact/javax.json/javax.json-api
+    implementation group: 'javax.json', name: 'javax.json-api', version: '1.1.4'
+    implementation group: 'org.glassfish', name: 'javax.json', version: '1.1.4'
+// https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
+    implementation group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+
+}
+
+test {
+    useJUnitPlatform()
+}
