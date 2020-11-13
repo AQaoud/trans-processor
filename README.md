@@ -7,7 +7,7 @@ Java library for transactions via different input types. Processing contains con
 - Input beans looks similar but they are different and there was no way to merge them in the same classes 
 as it will add some coupling between different input types. 
 - There are no added validations on input beans as validations are covered by "trans-core" module which contains
-validated Transaction DTO.
+ Transaction DTO.
 
 ## Cloning
 
