@@ -4,8 +4,9 @@ Java library for transactions via different input types. Processing contains con
 ## Important Notes
 
 - gRPC beans are mocked by plain POJOs.
-- Input beans looks similar but they are different and there was no way to merge them in the same classes 
-as it will add some coupling between different input types. 
+- Input beans looks similar, but they are different and there was no way to merge them in the same classes 
+without adding some coupling between different input types. I even tried to merge XML and JSON input
+beans but couldn't due to parsing library (Jaxb) restrictions. 
 - There are no added validations on input beans as validations are covered by "trans-core" module which contains
  Transaction DTO.
 
